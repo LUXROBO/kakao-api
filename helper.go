@@ -1,6 +1,6 @@
 package kakaoapi
 
-import "kakao-api/logger"
+import "github.com/LUXROBO/kakao-api/logger"
 
 // Must 에러일경우 panic 처리
 func Must(err error) {

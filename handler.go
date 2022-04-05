@@ -3,9 +3,10 @@ package kakaoapi
 import (
 	"context"
 	"encoding/json"
-	"kakao-api/logger"
 	"net/http"
 	"time"
+
+	"github.com/LUXROBO/kakao-api/logger"
 
 	"golang.org/x/oauth2"
 )

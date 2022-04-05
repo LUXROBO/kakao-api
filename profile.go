@@ -2,7 +2,8 @@ package kakaoapi
 
 import (
 	"encoding/json"
-	"kakao-api/logger"
+
+	"github.com/LUXROBO/kakao-api/logger"
 )
 
 // GetProfileEmail 카카오 프로필

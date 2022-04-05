@@ -1,4 +1,4 @@
-module kakao-api
+module github.com/LUXROBO/kakao-api
 
 go 1.17
 
