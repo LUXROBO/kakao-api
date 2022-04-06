@@ -1,8 +1,13 @@
+// https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#req-user-info-admin-key
+// 카카오 프로필 데이타 스키마 정의 참조
+
 package schema
 
 // Property ...
 type Property struct {
-	Nickname string `json:"nickname"`
+	Nickname       string `json:"nickname"`
+	ProfileImage   string `json:"profile_image"`
+	ThumbnailImage string `json:"thumbnail_image"`
 }
 
 // Profile ...
@@ -12,6 +17,7 @@ type Profile struct {
 
 // Account ...
 type Account struct {
+	Name                   string  `json:"name"`
 	ProfileNeedsAgreement  bool    `json:"profile_needs_agreement"`
 	Profile                Profile `json:"profile"`
 	HasEmail               bool    `json:"has_email"`
@@ -28,9 +34,10 @@ type Account struct {
 	Hasgendar              bool    `json:"has_gender"`
 	GenderNeedsAgreement   bool    `json:"gender_needs_agreement"`
 	Gender                 string  `json:"gender"`
+	PhoneNumber            string  `json:"phone_number"`
 }
 
-// ProfileData ...
+// ProfileData 카카오 프로필 데이타
 type ProfileData struct {
 	ID           int64    `json:"id"`
 	ConnectedAt  string   `json:"connected_at"`

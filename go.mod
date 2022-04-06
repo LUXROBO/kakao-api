@@ -7,6 +7,7 @@ require (
 	github.com/getsentry/raven-go v0.2.0
 	github.com/johntdyer/slackrus v0.0.0-20211215141436-33e4a270affb
 	github.com/lingdor/stackerror v0.0.0-20191119040541-976d8885ed76
+	github.com/rs/cors v1.8.2
 	github.com/sirupsen/logrus v1.8.1
 	golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a
 )
