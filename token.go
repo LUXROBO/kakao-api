@@ -9,7 +9,7 @@ import (
 )
 
 // GetToken 토큰처리
-func (c Client) GetToken(ctx context.Context, code string) (*oauth2.Token, error) {
+func (c Client) GetToken(ctx context.Context, code string, redirectURL string) (*oauth2.Token, error) {
 	httpClient := &http.Client{Timeout: 5 * time.Second}
 	ctx = context.WithValue(ctx, oauth2.HTTPClient, httpClient)
 	var (
@@ -19,7 +19,7 @@ func (c Client) GetToken(ctx context.Context, code string) (*oauth2.Token, error
 				AuthURL:  c.AuthURL,
 				TokenURL: c.TokenURL,
 			},
-			RedirectURL: c.RedirectURL,
+			RedirectURL: redirectURL,
 		}
 	)
 	token, err := conf.Exchange(ctx, code)

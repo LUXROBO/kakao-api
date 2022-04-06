@@ -25,10 +25,9 @@ type Client struct {
 // NewClient 카카오 서비스
 func NewClient() *Client {
 	client := &Client{
-		ClientID:    os.Getenv("KAKAO_CLIENT_ID"),
-		AuthURL:     fmt.Sprintf("%s/oauth/authorize", KakaoAuthPath),
-		TokenURL:    fmt.Sprintf("%s/oauth/token", KakaoAuthPath),
-		RedirectURL: os.Getenv("KAKAO_REDIRECT_URL"),
+		ClientID: os.Getenv("KAKAO_CLIENT_ID"),
+		AuthURL:  fmt.Sprintf("%s/oauth/authorize", KakaoAuthPath),
+		TokenURL: fmt.Sprintf("%s/oauth/token", KakaoAuthPath),
 	}
 	client.AuthLoginURL = fmt.Sprintf(
 		"%s?client_id=%s&redirect_uri=%s&response_type=code",
