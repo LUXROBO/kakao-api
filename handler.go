@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/LUXROBO/kakao-api/logger"
-
 	"golang.org/x/oauth2"
 )
 
