@@ -7,8 +7,8 @@ import (
 	"github.com/LUXROBO/kakao-api/schema"
 )
 
-// GetProfileEmail 카카오 프로필
-func (c Client) GetProfileEmail(tokenStr string) (*schema.ProfileData, error) {
+// GetProfile 카카오 프로필
+func (c Client) GetProfile(tokenStr string) (*schema.ProfileData, error) {
 	body, err := c.requestGetAPI(tokenStr, KakaoAPIPAth+"/v2/user/me")
 	if WorkCheck("requestAPI", err) != nil {
 		return nil, err

@@ -27,8 +27,8 @@ func (c Client) GetToken(ctx context.Context, code string, redirectURL string) (
 		return nil, err
 	}
 
-	_, err = c.GetProfileEmail(token.AccessToken)
-	if WorkCheck("GetProfileEmail", err) != nil {
+	_, err = c.GetProfile(token.AccessToken)
+	if WorkCheck("GetProfile", err) != nil {
 		return nil, err
 	}
 	return token, nil
