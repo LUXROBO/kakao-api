@@ -5,14 +5,14 @@ package schema
 
 // Property ...
 type Property struct {
-	Nickname       string `json:"nickname"`
-	ProfileImage   string `json:"profile_image"`
-	ThumbnailImage string `json:"thumbnail_image"`
+	Nickname string `json:"nickname"`
 }
 
 // Profile ...
 type Profile struct {
-	Nickname string `json:"nickname"`
+	Nickname       string `json:"nickname"`
+	ProfileImage   string `json:"profile_image_url"`
+	ThumbnailImage string `json:"thumbnail_image_url"`
 }
 
 // Account ...

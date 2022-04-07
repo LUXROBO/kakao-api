@@ -10,7 +10,7 @@ import (
 // authCode는 한번사용한 코드는 재요청시 에러코드 발생
 // 내부적으로 캐쉬처리 필요
 func TestGetToken(t *testing.T) {
-	const authCode = "VnT7jW5GV13QfCMUC7zRidstK4wtkl09_y0CcDYt4lYtzdlwzWfjCLHdSXPkiTq13u_V0QopcBQAAAGAAOdODw"
+	const authCode = "XOdsoOS370U47RGkQONm9nHbBTv7SJJoYR6J2o4Zx6doj1kUn0Yvz7BJ7_hFDqakKvNMpAo9cxgAAAGAA2-ulw"
 
 	svc := New()
 	token, err := svc.client.GetToken(svc.ctx, authCode, KAKAO_REDIRECT_URL)
@@ -23,7 +23,7 @@ func TestGetToken(t *testing.T) {
 // TestKakaoProfile 카카오 프로필 테스트
 // 입력값 accessToken
 func TestKakaoProfile(t *testing.T) {
-	const accessToken = "YpyZ8nM8RRcqnXrqFnEhXeZC5MpoahNQTsiySwo9dNkAAAF__w613A"
+	const accessToken = "oUJdzykMGCuyRpj3CWVRUkv4HYaa_NLMZkfPsgo9dRkAAAGAA3BVTg"
 
 	svc := New()
 	profileData, err := svc.client.GetProfile(accessToken)
