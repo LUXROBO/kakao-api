@@ -39,52 +39,37 @@ func (f *formatter) Format(entry *logrus.Entry) ([]byte, error) {
 	switch {
 	case f.serviceName == "":
 		if len(entry.Data) > 0 {
-			return []byte(
-				fmt.Sprintf(
-					"\x1b[%dm[%s]\x1b[0m \x1b[%dm%s\x1b[0m - %s (%s) \n",
-					blueColor,
-					entry.Time.Format(f.TimestampFormat),
-					levelColor,
-					strings.ToUpper(entry.Level.String()),
-					entry.Message,
-					entry.Data,
-				),
-			), nil
+			return []byte(f.entryDataMessage(entry, blueColor, levelColor)), nil
 		}
-		return []byte(
-			fmt.Sprintf(
-				"\x1b[%dm[%s]\x1b[0m \x1b[%dm%s\x1b[0m - %s\n",
-				blueColor,
-				entry.Time.Format(f.TimestampFormat),
-				levelColor,
-				strings.ToUpper(entry.Level.String()),
-				entry.Message,
-			),
-		), nil
+		return []byte(f.entryMessage(entry, blueColor, levelColor)), nil
 	case len(entry.Data) > 0:
-		return []byte(
-			fmt.Sprintf(
-				"\x1b[%dm[%s] %s\x1b[0m \x1b[%dm%s\x1b[0m - %s (%s) \n",
-				blueColor,
-				entry.Time.Format(f.TimestampFormat),
-				strings.ToUpper(f.serviceName),
-				levelColor,
-				strings.ToUpper(entry.Level.String()),
-				entry.Message,
-				entry.Data,
-			),
-		), nil
+		return []byte(f.entryDataMessage(entry, blueColor, levelColor)), nil
 	default:
-		return []byte(
-			fmt.Sprintf(
-				"\x1b[%dm[%s] %s\x1b[0m \x1b[%dm%s\x1b[0m - %s\n",
-				blueColor,
-				entry.Time.Format(f.TimestampFormat),
-				strings.ToUpper(f.serviceName),
-				levelColor,
-				strings.ToUpper(entry.Level.String()),
-				entry.Message,
-			),
-		), nil
+		return []byte(f.entryMessage(entry, blueColor, levelColor)), nil
 	}
+}
+
+// entryDataMessage entry Data 메세지가 있는 경우
+func (f *formatter) entryDataMessage(entry *logrus.Entry, blueColor int, levelColor int) string {
+	return fmt.Sprintf(
+		"\x1b[%dm[%s]\x1b[0m \x1b[%dm%s\x1b[0m - %s (%s) \n",
+		blueColor,
+		entry.Time.Format(f.TimestampFormat),
+		levelColor,
+		strings.ToUpper(entry.Level.String()),
+		entry.Message,
+		entry.Data,
+	)
+}
+
+// entryMessage entry 메시지만 처리
+func (f *formatter) entryMessage(entry *logrus.Entry, blueColor int, levelColor int) string {
+	return fmt.Sprintf(
+		"\x1b[%dm[%s]\x1b[0m \x1b[%dm%s\x1b[0m - %s\n",
+		blueColor,
+		entry.Time.Format(f.TimestampFormat),
+		levelColor,
+		strings.ToUpper(entry.Level.String()),
+		entry.Message,
+	)
 }
