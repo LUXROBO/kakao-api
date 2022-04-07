@@ -11,7 +11,10 @@ import (
 	"github.com/rs/cors"
 )
 
+// KAKAO_CLIENT_ID 카카오 앱ID
 const KAKAO_CLIENT_ID = "a07075fd6083b99006d0f14f7180ac55"
+
+// KAKAO_REDIRECT_URL 카카오 인가코드 redirectURL정보
 const KAKAO_REDIRECT_URL = "http://localhost:8081/user/kakao/callback"
 
 func main() {

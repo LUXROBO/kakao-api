@@ -12,8 +12,7 @@ type formatter struct {
 	logrus.TextFormatter
 }
 
-// Format 로그 format화
-func (f *formatter) Format(entry *logrus.Entry) ([]byte, error) {
+func (f *formatter) getColors(entry *logrus.Entry) (int, int) {
 	var (
 		blueColor  = 34
 		levelColor int
@@ -30,7 +29,15 @@ func (f *formatter) Format(entry *logrus.Entry) ([]byte, error) {
 		levelColor = 36 // cyan
 	}
 
-	if f.serviceName == "" {
+	return blueColor, levelColor
+}
+
+// Format 로그 format화
+func (f *formatter) Format(entry *logrus.Entry) ([]byte, error) {
+	blueColor, levelColor := f.getColors(entry)
+
+	switch {
+	case f.serviceName == "":
 		if len(entry.Data) > 0 {
 			return []byte(
 				fmt.Sprintf(
@@ -44,7 +51,6 @@ func (f *formatter) Format(entry *logrus.Entry) ([]byte, error) {
 				),
 			), nil
 		}
-
 		return []byte(
 			fmt.Sprintf(
 				"\x1b[%dm[%s]\x1b[0m \x1b[%dm%s\x1b[0m - %s\n",
@@ -55,9 +61,7 @@ func (f *formatter) Format(entry *logrus.Entry) ([]byte, error) {
 				entry.Message,
 			),
 		), nil
-	}
-
-	if len(entry.Data) > 0 {
+	case len(entry.Data) > 0:
 		return []byte(
 			fmt.Sprintf(
 				"\x1b[%dm[%s] %s\x1b[0m \x1b[%dm%s\x1b[0m - %s (%s) \n",
@@ -70,17 +74,17 @@ func (f *formatter) Format(entry *logrus.Entry) ([]byte, error) {
 				entry.Data,
 			),
 		), nil
+	default:
+		return []byte(
+			fmt.Sprintf(
+				"\x1b[%dm[%s] %s\x1b[0m \x1b[%dm%s\x1b[0m - %s\n",
+				blueColor,
+				entry.Time.Format(f.TimestampFormat),
+				strings.ToUpper(f.serviceName),
+				levelColor,
+				strings.ToUpper(entry.Level.String()),
+				entry.Message,
+			),
+		), nil
 	}
-
-	return []byte(
-		fmt.Sprintf(
-			"\x1b[%dm[%s] %s\x1b[0m \x1b[%dm%s\x1b[0m - %s\n",
-			blueColor,
-			entry.Time.Format(f.TimestampFormat),
-			strings.ToUpper(f.serviceName),
-			levelColor,
-			strings.ToUpper(entry.Level.String()),
-			entry.Message,
-		),
-	), nil
 }
