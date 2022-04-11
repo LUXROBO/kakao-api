@@ -51,10 +51,6 @@ _after-cc:
 ifdef prefix
 	$(eval PREFIX=${prefix})
 endif
-	# format-coverage 
-	docker run -w /app -v ${ROOT}:/app \
-		${GOLANG_DOCKER_IMAGE} ./cc-test-reporter format-coverage --input-type gocov c.out
-
 	# upload data to CC
 	docker run -w /app -v ${ROOT}:/app \
 		-e CC_TEST_REPORTER_ID=${CC_TEST_REPORTER_ID} \
