@@ -1,6 +1,15 @@
 # KAKAO
 카카오 API 모든 서비스 담당 ...
 
+
+### Test & coverage output
+
+```
+
+make testing
+
+```
+
 ### 사용방법
 
 ```go
