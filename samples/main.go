@@ -18,12 +18,12 @@ const KAKAO_REDIRECT_URL = "http://localhost:8081/user/kakao/callback"
 
 func main() {
 	errc := make(chan error)
-	ServerStart("8081", NewHttpHandler(), errc)
+	ServerStart("8081", NewHTTPHandler(), errc)
 	logger.Debug("exit", <-errc)
 }
 
-// NewHttpHandler http hanlder
-func NewHttpHandler() http.Handler {
+// NewHTTPHandler http hanlder
+func NewHTTPHandler() http.Handler {
 	kakaoClient := kakaoapi.NewClient(KAKAO_CLIENT_ID, KAKAO_REDIRECT_URL)
 
 	mux := http.NewServeMux()
