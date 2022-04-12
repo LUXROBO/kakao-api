@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/12c7a9e048efae2a0615/maintainability)](https://codeclimate.com/github/LUXROBO/kakao-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/12c7a9e048efae2a0615/test_coverage)](https://codeclimate.com/github/LUXROBO/kakao-api/test_coverage)
+
 # KAKAO
 카카오 API 모든 서비스 담당 ...
 
@@ -30,4 +32,3 @@ func main() {
 }
 
 ```
-
