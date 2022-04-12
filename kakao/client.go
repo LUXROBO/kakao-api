@@ -2,13 +2,8 @@ package kakao
 
 import (
 	"fmt"
-)
 
-const (
-	// KakaoAuthAPI 인증 API
-	KakaoAuthAPI = "https://kauth.kakao.com"
-	// KakaoAPI API
-	KakaoAPI = "https://kapi.kakao.com"
+	"github.com/LUXROBO/kakao-api/types"
 )
 
 // Client ....
@@ -31,8 +26,8 @@ func NewClient(
 	client := &Client{
 		ClientID:    clientID,
 		RedirectURL: redirectURL,
-		AuthURL:     fmt.Sprintf("%s/oauth/authorize", KakaoAuthAPI),
-		TokenURL:    fmt.Sprintf("%s/oauth/token", KakaoAuthAPI),
+		AuthURL:     fmt.Sprintf("%s/oauth/authorize", types.KakaoAuthAPI),
+		TokenURL:    fmt.Sprintf("%s/oauth/token", types.KakaoAuthAPI),
 	}
 	return client
 }

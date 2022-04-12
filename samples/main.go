@@ -1,7 +1,6 @@
-package main
+package samples
 
 import (
-	"context"
 	"flag"
 	"net/http"
 	"time"
@@ -19,19 +18,25 @@ const KAKAO_REDIRECT_URL = "http://localhost:8081/user/kakao/callback"
 
 func main() {
 	errc := make(chan error)
-	ctx := context.Background()
-	kakaoClient := kakaoapi.NewClient(KAKAO_CLIENT_ID, KAKAO_REDIRECT_URL)
-
-	mux := http.NewServeMux()
-	mux.Handle("/user/kakao/auth", kakaoClient.Auth(ctx))
-	mux.Handle("/user/kakao/callback", kakaoClient.Callback(ctx))
-	serverStart("8081", mux, errc)
+	ServerStart("8081", NewHttpHandler(), errc)
 	logger.Debug("exit", <-errc)
 }
 
-func serverStart(
+// NewHttpHandler http hanlder
+func NewHttpHandler() http.Handler {
+	kakaoClient := kakaoapi.NewClient(KAKAO_CLIENT_ID, KAKAO_REDIRECT_URL)
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/user/kakao/auth", kakaoClient.Auth)
+	mux.HandleFunc("/user/kakao/callback", kakaoClient.Callback)
+
+	return mux
+}
+
+// ServerStart 서버 시작
+func ServerStart(
 	port string,
-	mux *http.ServeMux,
+	mux http.Handler,
 	errc chan error,
 ) {
 	var (
