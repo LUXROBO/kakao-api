@@ -27,7 +27,7 @@ clean:
 #   Usage:
 #       make test
 testing:
-	docker run -w /app -v ${ROOT}:/app ${GOLANG_DOCKER_IMAGE} go test ./... -coverpkg=./... -coverprofile=${GO_TEST_OUTFILE}
+	docker run -w /app -v ${ROOT}:/app ${GOLANG_DOCKER_IMAGE} go test ./...  -coverpkg=./... -coverprofile=${GO_TEST_OUTFILE}
 	docker run -w /app -v ${ROOT}:/app ${GOLANG_DOCKER_IMAGE} go tool cover -html=${GO_TEST_OUTFILE} -o ${GO_HTML_COV}
 
 # custom logic for code climate, gross but necessary

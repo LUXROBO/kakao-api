@@ -38,6 +38,11 @@ func WorkCheck(message string, err error) error {
 	return nil
 }
 
+// ErrorCheck 에러체크
+func ErrorCheck(err error) bool {
+	return err != nil
+}
+
 // RequestGetAPI GET요청
 func RequestGetAPI(tokenStr string, apiURL string) ([]byte, error) {
 	token := "Bearer " + tokenStr

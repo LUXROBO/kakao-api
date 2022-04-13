@@ -1,7 +1,7 @@
 // https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#req-user-info-admin-key
 // 카카오 프로필 데이타 스키마 정의 참조
 
-package schema
+package types
 
 // Property ...
 type Property struct {
